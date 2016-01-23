@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--suppress JSReferencingMutableVariableFromClosure -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            padding: 100px;
+        }
+        #carousel{
+            height: 400px;
+            width: 600px;
+            overflow: hidden;
+            position: relative;
+        }
+        #imgContainer{
+            width: 4200px;
+            height: 400px;
+            z-index: 1;
+            position: absolute;
+        }
+        #imgContainer img{
+            float: left;
+        }
+        #cButton{
+            width: 100px;
+            height: 12px;
+            position: absolute;
+            left: 250px;
+            bottom: 10px;
+            z-index: 2;
+        }
+        #cButton span{
+            float: left;
+            height: 10px;
+            width: 10px;
+            margin-left: 5px;
+            border: 1px solid gainsboro;
+            border-radius: 50%;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .on{
+            background-color: cornflowerblue;
+        }
+        .arrow {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            top: 175px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            color: white;
+            background-color: RGBA(0,0,0,.7);
+            display: none;
+            z-index: 2;
+        }
+        .arrow:hover{
+            background-color: RGBA(0,0,0,.3);
+        }
+        #carousel:hover .arrow{
+            display: block;
+        }
+
+        #prev{
+            left: 20px;
+        }
+        #next{
+            right: 20px;
+        }
+
+    </style>
+    <script>
+        window.onload=function(){
+
+            slideshow()}
+
+        function slideshow(){
+            var carousel = document.getElementById("imgContainer");
+            var img = document.getElementById("imgContainer").getElementsByTagName("img");
+            var imgWidth = img[0].width;
+            var imgNum = img.length-2;
+            var imgLength = imgNum*imgWidth;
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+            var buttons = document.getElementById("cButton").getElementsByTagName("span");
+            var index = 1;  //图片索引
+            var moveState = false;
+            var itime;
+
+            //移动函数
+            function move(distance){
+                moveState = true;
+                var left = parseInt(carousel.style.left)+distance;
+                var moveTime = 300;    //移动时间
+                var internal = 10;
+                var speed = distance/(moveTime/internal);
+                begin();
+                function begin() {
+                    if ((speed < 0 && left < parseInt(carousel.style.left)) || (speed > 0 && left > parseInt(carousel.style.left))) {
+                        carousel.style.left = parseInt(carousel.style.left) + speed + "px";
+                        setTimeout(begin,internal)
+                }
+                    else {
+                        moveState = false;
+                        if (left < -imgLength) {
+                            carousel.style.left = -imgWidth + "px"
+                        }
+                        if (left >  -imgWidth) {
+                            carousel.style.left = -imgLength + "px"
+                        }
+                    }
+                }
+            }
+
+
+            //给左右箭头绑定点击事件，每点击一次移动图片，并且改变按钮状态
+            next.onclick=function(){
+                if(!moveState){
+                    move( -imgWidth);}
+                if(index===imgNum){
+                    index=1}
+                else{index+=1}
+                buttonLight()
+            };
+
+            prev.onclick=function(){
+                if(!moveState){
+                move(imgWidth);}
+                if(index===1){
+                    index=imgNum}
+                else{index-=1}
+                buttonLight()
+            };
+
+            //控制按钮状态，先取消掉亮着的按钮，再设置新的按钮，序号与图片索引一样
+            function buttonLight(){
+                for(var i= 0,j=buttons.length;i<j;i++){
+                    if(buttons[i].className === "on"){
+                        buttons[i].className = ""
+                    }
+                }
+                buttons[index-1].className = "on"
+            }
+
+            //给每个按钮绑定状态，如果点击该按钮则跳转到相应图片
+            for(var i= 0,j=buttons.length;i<j;i++){
+                var thisIndex;
+                buttons[i].onclick=function(){  //优化，如果当前按钮亮，则点击当前按钮无反应，直接退出函数
+                    if(this.className==="on"){
+                        return
+                    }
+                    thisIndex=parseInt(this.getAttribute("index"));
+                    if(!moveState){
+                    move(-imgWidth*(thisIndex-index))}
+                    index=thisIndex;
+                    buttonLight()
+                }
+            }
+
+            function play(){
+                itime = setInterval(function(){
+                    next.onclick()
+                },1000) ;   //正反向
+            }
+            function stop(){
+                clearInterval(itime)
+            }
+
+            carousel.onmouseover = stop;
+            carousel.onmouseout = play;
+            play()
+        }
+    </script>
+</head>
+<body>
+<div id="carousel">
+    <div id="imgContainer" style="left: -600px;">
+        <img src="img/5.jpg">
+        <img src="img/1.jpg">
+        <img src="img/2.jpg">
+        <img src="img/3.jpg">
+        <img src="img/4.jpg">
+        <img src="img/5.jpg">
+        <img src="img/1.jpg">
+    </div>
+    <div id="cButton">
+        <span index="1" class="on"></span>
+        <span index="2"></span>
+        <span index="3"></span>
+        <span index="4"></span>
+        <span index="5"></span>
+    </div>
+    <a href="javascript:;" class="arrow" id="prev">&lt</a>
+    <a href="javascript:;" class="arrow" id="next">&gt</a>
+</div>
+
+</body>
+</html>

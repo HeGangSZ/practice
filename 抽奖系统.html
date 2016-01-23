@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wrapper{
+            width: 400px;
+            margin: 100px auto;
+            border: 1px solid black;
+            overflow: auto;
+        }
+        p{
+            text-align: center;
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            font-size: 40px;
+        }
+        #begin{
+            width: 100px;
+            height: 60px;
+            background-color: #cccccc;
+            float: left;
+            margin-left: 50px;
+            margin-bottom: 50px;
+            line-height: 60px;
+            text-align: center;
+            cursor:pointer;
+        }
+        #end{
+            width: 100px;
+            height: 60px;
+            background-color: #cccccc;
+            float: right;
+            margin-right: 50px;
+            margin-bottom: 50px;
+            line-height: 60px;
+            text-align: center;
+            cursor:pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrapper">
+<p>按Enter键进行抽奖</p>
+    <div id="begin">开始抽奖</div>
+    <div id="end">停止抽奖</div>
+</div>
+<script src="js/util.js"></script>
+<script>
+    var gift=["Macbook Air","Macbook Pro","iPhone6S","免费午餐1年","免费坐车1年","涨工资300"],
+    get = $("p"),
+    timer=null,
+    num = 0;
+
+
+    function play(){
+        clearInterval(timer);
+        function random(){
+            get.innerHTML = gift[Math.floor(Math.random()*gift.length)];
+        }
+        timer = setInterval(random,50);}
+
+    function end(){
+        clearInterval(timer)
+    }
+    $.on("#begin","click",play);
+    $.on("#end","click",end);
+    document.onkeyup=function(e) {
+        e = e || window.event;
+        if (event.keyCode === 13) {
+            if (num == 0) {
+                play();
+                num = 1;
+                }
+            else{
+                end();
+                num=0;
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>无标题文档</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #wrapper{
+            background-color: #ccc;
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            left: 30%;
+            top:20%
+        }
+        #close{
+            width: 50px;
+            height: 30px;
+            background-color: aquamarine;
+            position: absolute;
+            line-height: 30px;
+            text-align: center;
+            left: 350px;
+            top: -15px;
+            cursor:pointer;
+        }
+        #drag{
+            background-color: #ffffff;
+            width: 200px;
+            height: 100px;
+            margin-left: 100px;
+            margin-top: 30px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 100px;
+            cursor: move;
+        }
+        #view{
+            background-color: aliceblue;
+            height: 50px;
+            width: 100px;
+            margin-top: 50px;
+            margin-left: 150px;
+            text-align: center;
+            line-height: 50px;
+            cursor:pointer;
+
+        }
+        #option{
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            display: none;
+            list-style-type: none;
+            border: 1px solid black;
+            cursor:pointer;
+        }
+        li{
+            display: block;
+            height: 50px;
+            width: 100px;
+            background-color: antiquewhite;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="close">关闭</div>
+    <div id="drag">点击我拖动方框</div>
+
+    <div id="select">
+        <div id="view">选择框</div>
+        <ul id="option">
+            <li id="first">ONE</li>
+            <li id="second">TWO</li>
+            <li id="third">THREE</li>
+            <li id="fourth">FOUR</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<script src="js/util.js"></script>
+<script>
+
+    drag("drag","wrapper");  //点击dragID标签，拖动wrapperID标签
+
+    var option = $("#option"),
+            view=$("#view"),
+            wrapper=$("#wrapper");
+
+    $.on("#close","click",function(){wrapper.style.display="none"});  //点击关闭按钮使容器隐藏
+
+    $.on("#view","click",function(e){
+        e=e || window.event;
+        option.style.display="block";  //点击view使option显示
+        e.stopPropagation();  //阻止事件冒泡，防止点击后触发document使option隐藏
+    });
+
+    //在文档其他地方点击隐藏option
+    document.onclick =function(){option.style.display="none";};
+
+    //事件代理，鼠标移入移出改变颜色
+    $.delegate("#option","li","mouseover",function(){(this.style.backgroundColor="yellow")});
+    $.delegate("#option","li","mouseout",function(){(this.style.backgroundColor="antiquewhite")});
+
+    //事件代理，点击option的li后option隐藏，同时将内容添加到view里
+    $.delegate("#option","li","click",function(){
+        view.innerHTML = this.innerHTML;
+        view.style.backgroundColor="honeydew";
+        option.style.display="none";
+    });
+
+</script>
+</body>
+</html>
