@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height: 800px;
+            width: 800px;
+            margin: 20px auto;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div id="imgContainer"></div>
+
+
+<script>
+
+
+    //    绑定事件
+    function addEvent(element,type,listener){
+        type = type.replace(/^on/i,"").toLowerCase();
+        var realListener = function (e) {
+            if(typeof listener === "function") {
+                e = e || window.event;
+                listener.call(element, event);
+            };
+        };
+        if(element.addEventListener){
+            element.addEventListener(type,realListener,false);
+        }
+        else if(element.attachEvent){
+            element.attachEvent("on"+type,realListener)
+        }
+        return element
+    };
+
+
+    window.onload=function(){
+
+        //  dragover事件
+        var dragover = function(e){
+            e.preventDefault()
+        }
+
+        //  drop事件
+        var drop = function(e){
+            e.preventDefault()
+            var f = e.dataTransfer.files[0]
+            var fileReader = new FileReader()
+            fileReader.readAsDataURL(f)
+            fileReader.onload = function(e){
+                contain.innerHTML = "<img src=\""+fileReader.result+"\">"
+            }
+        }
+
+            var contain = document.getElementById("imgContainer")
+
+            addEvent(contain,"ondragover",dragover)
+            addEvent(contain,"ondrop",drop)
+
+    }
+
+</script>
+</body>
+</html>

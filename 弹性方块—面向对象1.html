@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding-top: 200px;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+        #line{
+            position: absolute;
+            left: 300px;
+            width: 1px;
+            height: 150px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div id="line"></div>
+<script>
+    window.onload = function(){
+        new Move("box")
+    }
+
+    function Move(id){
+        this.ispeed = 0
+        this.box = document.getElementById(id)
+        var _this = this
+        setInterval(function(){
+            _this.play()
+        },30)
+    }
+    Move.prototype.play = function(){
+        this.ispeed += (300-this.box.offsetLeft)/5
+        this.ispeed *=0.7
+        this.box.style.left = this.box.offsetLeft+this.ispeed +"px"
+    }
+
+
+</script>
+</body>
+</html>

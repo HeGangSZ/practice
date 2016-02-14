@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 366px;
+            margin: 50px auto;
+            position: relative;
+        }
+        .box{
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 1px solid black;
+            float: left;
+            background-color: #8e9eb1;
+        }
+    </style>
+</head>
+<body>
+<ul id="container">
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+    <li class="box"></li>
+</ul>
+<script src="js/movement.js"></script>
+<script>
+    window.onload = function(){
+
+        //转换布局
+        function changePosition(elements){
+            for(var i= 0,j=elements.length;i<j;i++){
+                //将浮动定位转换为绝对定位
+                elements[i].style.float = null
+                elements[i].style.left = elements[i].offsetLeft+"px"
+                elements[i].style.top = elements[i].offsetTop+"px"
+
+            }
+            for(var i= 0,j=elements.length;i<j;i++){
+                //赋予left和top值后再改变positon，防止offoffsetLeft改变。去除margin，因为已经重复了
+                elements[i].style.margin = 0
+                elements[i].style.position = "absolute"
+            }
+        }
+
+        var boxs = document.getElementsByClassName("box")
+        changePosition(boxs)
+        //用mIndex记录层级，防止放大缩小途中被其他方块遮盖
+        var mIndex = 1
+
+        for(var i=0,j=boxs.length;i<j;i++){
+            addEvent(boxs[i],"onmouseenter",function(){
+                var that = this
+                //利用负margin实现方块平移，产生从中心放大的效果
+                startMove(that,{width:200,height:200,marginLeft:-50,marginTop:-50})
+                that.style.zIndex = mIndex++
+
+            })
+
+            addEvent(boxs[i],"onmouseleave",function(){
+                var that = this
+                startMove(that,{width:100,height:100,marginLeft:0,marginTop:0})
+                that.style.zIndex = mIndex++
+            })
+
+        }
+
+
+    }
+
+</script>
+</body>
+</html>

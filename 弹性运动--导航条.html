@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            padding: 300px;
+        }
+        ul{
+            position: relative;
+        }
+        li{
+            list-style: none;
+            float:left;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        .content{
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 25px;
+            text-align: center;
+            border: 1px solid black;
+            background-color: #eee;
+        }
+        #bg{
+            position: absolute;
+            height: 5px;
+            width: 100px;
+            background-color: #33CCCC;
+            top: 45px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <ul id="nav">
+        <li class="content">菜单</li>
+        <li class="content">新闻</li>
+        <li class="content">时事</li>
+        <li class="content">热点</li>
+        <li id="bg"></li>
+    </ul>
+<script>
+
+    window.onload = function(){
+
+        var iSpeed =0
+        var left = 0
+        function startMove(element,iTarget){
+            clearInterval(element.time)
+            element.time = setInterval(function(){
+                //弹性运动速度
+                iSpeed  += (iTarget-element.offsetLeft)/5
+                //摩擦力
+                iSpeed  *= 0.8
+                left += iSpeed
+                //清除定时器
+                if(Math.abs(iSpeed)<1 && Math.abs((left-iTarget)<1)) {
+                    clearInterval(element.time)
+                    element.style.left = iTarget +"px"
+                }
+                else{
+                    element.style.left = left+ "px"
+                }
+            },30)
+
+
+        }
+
+        var li = document.getElementsByTagName("li")
+        var bg = document.getElementById("bg")
+        for(var i= 0,j=li.length-1;i<j;i++){
+            li[i].onmouseover = function(){
+                startMove(bg,this.offsetLeft)
+
+            }
+
+        }
+
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div{
+            width: 650px;
+            height: 500px;
+            border: 1px solid black;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box1"><p>把图片拖放到这里</p></div>
+<div id="box2"><p>把图片拖放到这里</p></div>
+<img src="img/1.jpg" id="img1">
+<script src = js/util.js></script>
+<script>
+    function dom(id){
+        return document.getElementById(id)
+    }
+
+    var dragenter = function(e){
+        this.style.border = "1px dashed red"
+    }
+
+    var dragleave = function(e){
+        this.style.border = "1px solid black"
+    }
+
+    var dragover = function(e){
+        e.preventDefault()
+    }
+
+    var drop = function(e){
+        e.preventDefault()
+        var image = dom(e.dataTransfer.getData("img"))
+        e.target.appendChild(img1)
+        this.style.border = "1px solid black"
+    }
+
+
+
+
+
+    window.onload=function(){
+        var box1 = dom("box1")
+        var box2 = dom("box2")
+        var img1 = dom("img1")
+
+        img1.ondragstart=function(e){
+            this.draggable="true"
+            e.dataTransfer.setData("img","img1")
+        }
+
+        box1.ondragenter = dragenter
+        box2.ondragenter = dragenter
+
+        box1.ondragleave = dragleave
+        box2.ondragleave = dragleave
+
+        box1.ondragover = dragover
+        box2.ondragover = dragover
+
+        box1.ondrop = drop
+        box2.ondrop = drop
+
+
+    }
+
+</script>
+</body>
+</html>

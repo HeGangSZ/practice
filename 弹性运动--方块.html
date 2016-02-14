@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding-top: 200px;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+        #line{
+            position: absolute;
+            left: 300px;
+            width: 1px;
+            height: 150px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="line"></div>
+<script>
+
+    window.onload = function(){
+        var ispeed = 0
+        var box = document.getElementById("box")
+        setInterval(function(){
+            ispeed += (300-box.offsetLeft)/5
+            ispeed *=0.8
+
+            box.style.left = box.offsetLeft+ispeed +"px"
+
+        },30)
+
+
+    }
+
+</script>
+</body>
+</html>

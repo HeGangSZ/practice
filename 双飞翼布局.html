@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            overflow: hidden;
+        }
+        #main{
+            width: 100%;
+            float: left;
+            height: 500px;
+            background-color: red;
+        }
+        #content{
+            margin-left: 300px;
+        }
+        #left{
+            float: left;
+            width: 300px;
+            height: 500px;
+            margin-left: -100%;
+            background-color: #cccccc;
+        }
+        #right{
+            float: left;
+            margin-left: -400px;
+            width: 400px;
+            height: 500px;
+            background-color: antiquewhite;
+
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="main">
+        <div id="content">主要内容先加载</div>
+    </div>
+    <div id="left"></div>
+    <div id="right"></div>
+</div>
+
+</body>
+</html>

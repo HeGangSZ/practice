@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+
+    window.onload = function(){
+
+        var box = document.getElementById("box")
+
+        var lastX = 0
+        var lastY = 0
+        var iSpeedX = 0
+        var iSpeedY = 0
+        box.onmousedown = function(e){
+            e = e || window.event
+            var disX = e.clientX - box.offsetLeft
+            var disY = e.clientY - box.offsetTop
+
+            document.onmousemove = function(e){
+                e = e || window.event
+
+                var l = e.clientX - disX
+                var t = e.clientY - disY
+
+                if(l>=wWidth-box.offsetWidth){
+                    l = wWidth-box.offsetWidth
+                }
+                if(l<0){
+                    l = 0
+                }
+                if(t>=wHeight-box.offsetHeight){
+                    t = wHeight-box.offsetHeight
+                }
+                if(t<0){
+                    t = 0
+                }
+
+                box.style.left = l+"px"
+                box.style.top = t +"px"
+
+                iSpeedX = l-lastX
+                iSpeedY = t - lastY
+                lastX = l
+                lastY = t
+
+            }
+            document.onmouseup = function(){
+                document.onmousemove = null
+                document.onmouseup = null
+                startMove()
+            }
+
+        }
+
+
+
+        var wWidth = document.documentElement.clientWidth|| document.body.clientWidth
+        var wHeight = document.documentElement.clientHeight || document.body.clientHeight
+         function startMove(){
+            clearInterval(box.time)
+            box.time = setInterval(function(){
+                iSpeedY += 2
+                var l = box.offsetLeft + iSpeedX
+                var t = box.offsetTop + iSpeedY
+
+
+                if(l>=wWidth-box.offsetWidth){
+                    iSpeedX *= -0.8
+                    iSpeedY *= 0.8
+                    l = wWidth-box.offsetWidth
+                }
+                if(l<0){
+                    iSpeedX *= -0.8
+                    iSpeedY *= 0.8
+                    l = 0
+                }
+                if(t>=wHeight-box.offsetHeight){
+                    iSpeedY *= -0.8
+                    iSpeedX *= 0.8
+                    t = wHeight-box.offsetHeight
+                }
+                if(t<0){
+                    iSpeedY *= -0.8
+                    iSpeedX *= 0.8
+                    t = 0
+                }
+
+                if(Math.abs(iSpeedX)<1){
+                    iSpeedX = 0
+                }
+                if(Math.abs(iSpeedY)<1){
+                    iSpeedY = 0
+                }
+                if(iSpeedX == 0 && iSpeedY == 0 && t == wHeight-box.offsetHeight){
+                    //清除定时器并重置lastX和lastY，否则再次点击会出问题
+                    clearInterval(box.time)
+                    lastX = 0
+                    lastY = 0
+                }
+
+                box.style.left =l +"px"
+                box.style.top = t +"px"
+            },30)
+        }
+
+    }
+
+</script>
+</body>
+</html>

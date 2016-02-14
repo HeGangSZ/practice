@@ -1,0 +1,40 @@
+body{
+    background: url("img/body-bg.png") repeat-x;
+}
+#top-info{
+    width: 960px;
+    height: 30px;
+    margin: 0 auto;
+}
+#top-info .top-menu{
+    float: left;
+}
+.top-menu li{
+    float: left;
+    color: #c0c0c0;
+}
+
+
+#top-info .top-bar{
+    float: right;
+}
+
+i{
+    display: inline;
+}
+.top-america{width:20px;height:11px;background-image:url(img/top-info/slice/top-america.png);}
+.top-canada{width:20px;height:11px;background-image:url(img/top-info/slice/top-canada.png);}
+.top-message{width:30px;height:22px;background-image:url(img/top-info/slice/top-message.png);}
+.top-phone{width:20px;height:22px;background-image:url(img/top-info/slice/top-phone.png);}
+.top-point{width:3px;height:3px;background-image:url(img/top-info/slice/top-point.png);}
+
+
+
+
+#top-search{
+
+}
+#top-nav{}
+#content{}
+#bottom-search{}
+#bottom-info{}
