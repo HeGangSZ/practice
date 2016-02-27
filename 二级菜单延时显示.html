@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding: 200px;
+        }
+        ul{
+            list-style: none;
+            cursor: pointer;
+        }
+        #button{
+            height: 50px;
+            width: 100px;
+            line-height: 50px;
+            font-size: 30px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        #outUl{
+            display: none;
+        }
+        .outLi{
+            padding: 20px;
+            height: 30px;
+            width: 100px;
+            border: 1px solid black;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 30px;
+            text-align: center;
+            background-color: aliceblue;
+            position: relative;
+        }
+        .inUL{
+            display: none;
+            position: absolute;
+            left: 160px;
+            top: 10px;
+        }
+        .inLi{
+            height: 50px;
+            width: 100px;
+            line-height: 50px;
+            border: 1px solid black;
+            background-color: beige;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="list">
+        <input type="button" id="button" value="菜单">
+        <ul id="outUl">
+            <li class="outLi">
+                <p>玩具</p>
+                <ul class="inUL">
+                    <li class="inLi">玩具</li>
+                    <li class="inLi">玩具</li>
+                    <li class="inLi">玩具</li>
+                </ul>
+            </li>
+            <li class="outLi">
+                <p>衣服</p>
+                <ul class="inUL">
+                    <li class="inLi">衣服</li>
+                    <li class="inLi">衣服</li>
+                    <li class="inLi">衣服</li>
+                </ul>
+            </li>
+            <li class="outLi">
+                <p>手机</p>
+                <ul class="inUL">
+                    <li class="inLi">手机</li>
+                    <li class="inLi">手机</li>
+                    <li class="inLi">手机</li>
+                </ul>
+            </li>
+            <li class="outLi">
+                <p>电视</p>
+                <ul class="inUL">
+                    <li class="inLi">电视</li>
+                    <li class="inLi">电视</li>
+                    <li class="inLi">电视</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+<script>
+    window.onload=function(){
+        function dom(id){
+            return document.getElementById(id)
+        }
+        var button =dom("button");
+        var outUl = dom("outUl");
+        var outLi = document.getElementsByClassName("outLi");
+        var time = null;
+
+
+        document.onclick = function(){
+                outUl.style.display = "none"
+        };
+
+
+        button.onclick = function(e){
+            e = e || window.event;
+            if(outUl.style.display == "block"){
+                outUl.style.display = "none"
+            }
+            else{
+                outUl.style.display = "block"
+            }
+            e.stopPropagation ? e.stopPropagation() : e.cancelable = true;
+        };
+
+
+
+
+
+        for(var i= 0,j=outLi.length;i<j;i++){
+            outLi[i].onmouseenter = function(){
+                for(var i= 0,j=outLi.length;i<j;i++){
+                    outLi[i].getElementsByTagName("ul")[0].style.display = "none"
+
+                }
+                this.getElementsByTagName("ul")[0].style.display = "block";
+
+                if(time){
+                    clearTimeout(time);
+                    time = null
+                }
+            };
+
+            outLi[i].onmouseleave = function(){
+                var that = this;
+                time = setTimeout(function(){
+                    that.getElementsByTagName("ul")[0].style.display = "none"
+                },500)
+            };
+
+
+            outLi[i].onclick = function(e){
+                e.stopPropagation ? e.stopPropagation() : e.cancelable = true;
+            };
+
+            var inLi = outLi[i].getElementsByClassName("inLi");
+            for(var x= 0,y=inLi.length;x<y;x++ ){
+                 outLi[i].getElementsByTagName("li")[x].onmouseenter =function(){
+                     clearTimeout(time);
+                     this.style.backgroundColor = "yellow";
+                     this.style.display = "block"
+                 };
+
+                outLi[i].getElementsByTagName("li")[x].onmouseleave =function(){
+                    this.style.backgroundColor = "beige"
+                }
+
+            }
+
+        }
+
+
+    }
+
+</script>
+</body>
+</html>

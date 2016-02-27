@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+        #outside{
+            width: 400px;
+            height: 400px;
+            margin: 200px auto;
+            background-color: beige;
+            position: relative;
+        }
+        #outside > img{
+            margin: 100px;
+        }
+        #inside{
+            height: 300px;
+            width: 600px;
+            position: absolute;
+            top: 50px;
+            background-color: darkgray;
+            display: none;
+        }
+        #inside > img{
+
+            position: absolute;
+            left: 100px;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outside">
+        <img src="img/1.jpg" />
+        <div id="inside">
+            <img src="img/1.jpg" />
+        </div>
+    </div>
+
+<script>
+    window.onload = function(){
+        var outside = document.getElementById("outside")
+        var inside =  document.getElementById("inside")
+        var outImg =  document.getElementById("outside").getElementsByTagName("img")[0]
+        var inImg =  document.getElementById("inside").getElementsByTagName("img")[0]
+        var time = null;
+
+        outImg.onmouseover = function(){
+            inside.style.display="block"
+        }
+
+
+        inside.onmouseout = function(e){
+            e = window.event || e;
+            //s是mouseout离开后进入的节点
+            var s = e.toElement || e.relatedTarget;
+            if(document.all) { //判断IE浏览器
+                if (!this .contains(s)) {
+                    //如果this .contains(s)为false则进入的不是子节点
+                    inside.style.display="none";
+                }
+            } else {
+                //会判断进入节点和离开节点的关系，返回相应数值
+                var reg = this .compareDocumentPosition(s);
+                //不是子节点则执行相应动作
+                if (!(reg == 20 || reg == 0)) {
+                    inside.style.display="none"
+                }
+
+            }
+        }
+
+
+    }
+
+        // 可直接用mouseleave不会有事件冒泡
+//        inside.onmouseleave = function(){
+//            inside.style.display="none";
+//        }
+//
+//    }
+
+</script>
+</body>
+</html>

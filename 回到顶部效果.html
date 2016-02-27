@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            width: 1000px;
+            height: 3000px;
+            margin: 0 auto;
+            background-color: #8e9eb1;
+        }
+        #backToTop{
+            position: fixed;
+            left: 50%;
+            bottom: 50px;
+            margin-left: 520px;
+            background-color: #33CCCC;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <a id="backToTop" href="javascript:;">回到顶部</a>
+
+<script>
+    window.onload = function(){
+        backToTop("backToTop")
+    }
+
+    function backToTop(element){
+        var toTop = document.getElementById(element);
+        var clientHeight = document.documentElement.clientHeight;
+        var time = null;
+        var status = true;
+
+        window.onscroll = function(){
+            var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if(!status){
+                clearInterval(time)
+            }
+            status = false;
+
+
+            if(osTop >= clientHeight){
+                toTop.style.display = "block"
+            }
+            else{
+                toTop.style.display = "none"
+            }
+
+        };
+
+        toTop.onclick = function(){
+            clearInterval(time);
+            time = setInterval(function(){
+                var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var iSpeed = Math.floor(osTop/8);
+                status = true;
+                if(osTop <10){
+                    osTop = 0;
+                    clearInterval(time)
+                }
+                document.documentElement.scrollTop = document.body.scrollTop -= iSpeed;
+
+            },30)
+        }
+    }
+
+</script>
+</body>
+</html>

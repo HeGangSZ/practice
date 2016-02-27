@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #star{
+            width: 500px;
+            margin: 50px auto;
+        }
+        #star ul{
+            list-style: none;
+        }
+        #star ul li{
+            float: left;
+            height: 27px;
+            width: 27px;
+            background: url(img/star.gif) no-repeat;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="star">
+        <p>点击星星可以进行评分噢</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+<script>
+window.onload=function(){
+    var li = document.getElementsByTagName("li")
+
+    for(var i= 0,j=li.length;i<j;i++){
+        li[i].index = i
+        li[i].onmouseover = function(){
+            var point = i
+            for(var i= 0,j=li.length;i<j;i++){
+                if(i<=this.index){
+                    console.log(1)
+                    li[i].style.background="url(img/star.gif) no-repeat 0 -29px";
+                }
+                else{
+                    li[i].style.background="url(img/star.gif) no-repeat";
+                }
+            }
+
+        }
+        li[i].onclick = function(){
+            alert("评分成功")
+            for(var i= 0,j=li.length;i<j;i++){
+                li[i].onmouseover =null
+                li[i].onclick =null
+            }
+        }
+    }
+
+
+}
+</script>
+</body>
+</html>

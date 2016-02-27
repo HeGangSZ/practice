@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding-top: 200px;
+        }
+        #box{
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            position: absolute;
+            left: 600px;
+            top: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div id="line"></div>
+<script>
+
+    window.onload = function(){
+
+        var v = 30
+        var box = document.getElementById("box")
+        var angle = 0
+        var color1 = 0
+        var color2 = 255
+        setInterval(function(){
+            //角速度，也可转换为线速度
+            angle += 0.1
+
+
+            if((angle-360) > 0.1){
+                angle = 0
+            }
+            var realAngle = angle*3.1415926/180
+
+            var ispeedX = v*Math.sin(angle)
+            var ispeedY = 0.5*v*Math.cos(angle)
+            box.style.left = box.offsetLeft+ispeedX +"px"
+            box.style.top = box.offsetTop+ispeedY+"px"
+
+            //背景变变颜色
+            color1 += 1
+            color2 -= 1
+            document.body.style.backgroundColor = "rgb(0,"+color1+","+color2+")"
+
+        },20)
+
+
+    }
+
+</script>
+</body>
+</html>

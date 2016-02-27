@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="description" content="practice"/>
+    <meta name="keywords" content="practice"/>
+    <meta name="author" content="HeGang, 493910728@qq.com"/>
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>practice</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/zepto.fullpage.css">
+    <style>
+        .page{
+            text-align: center;
+            font-size: 40px;
+            line-height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="wp">
+    <div class="wp-inner">
+        <div class="page page1">尘生的简历</div>
+        <div class="page page2">基本信息</div>
+        <div class="page page3">我的技能</div>
+        <div class="page page4">我的优点</div>
+        <div class="page page5">我的爱好</div>
+        <div class="page page6">我的希望</div>
+        <div class="page page7">联系方式</div>
+    </div>
+</div>
+<span class="start"><b></b></span>
+
+<script src="js/js.fullpage.js"></script>
+<script>
+    document.getElementsByClassName('wp-inner')[0].fullpage({
+        //是否可拖动，默认false，设置true页面可拖动
+        drag: false,
+        //开始页面，默认第一屏即0
+        start: 0,
+        //每屏动画切换的时间，这段时间内，不能重复切换，默认是500ms，这里只是js限制，css动画时间需要更改css文件。
+        duration: 100,
+        //每屏的选择符，默认是 .page
+        page: '.page',
+        //当滑动距离大于一个值时，才会引起滑动现象，滑动距离=der*屏幕高度|宽度，默认值为0.1
+        der: 0.1,
+        //切换方向，默认垂直方向(v|h)。
+        dir: 'v'
+    });
+</script>
+</body>
+</html>
+
+
+

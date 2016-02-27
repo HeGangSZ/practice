@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            height: 2000px;
+        }
+        #div{
+            width: 100px;
+            height: 200px;
+            background-color: #cedce8;
+            position: absolute;
+            left: -100px;
+        }
+        span{
+            width: 20px;
+            height: 80px;
+            line-height: 20px;
+            position: absolute;
+            left: 100px;
+            top: 20px;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+        <span>分享到</span>
+    </div>
+<script>
+    window.onload=function(){
+        var div = document.getElementById("div")
+        var time = null
+        var target = null
+
+
+        div.onmouseenter = function(){
+            move(0)
+        }
+
+        div.onmouseleave = function(){
+            move(-100)
+        }
+
+        function move(target){
+            clearInterval(time)
+            time = setInterval(function(){
+                if(div.offsetLeft < target){
+                    // 缓冲运动，取整使速度最小为1
+                    speed = Math.ceil((target-div.offsetLeft)/8)
+                }
+                else{
+                    speed = Math.floor((target-div.offsetLeft)/8)
+                }
+                if(div.offsetLeft == target){
+                    clearInterval(time)
+                    //如果是匀速运动且速度不能正好到指定位置时加下面这条，防止没到目标停下来
+                    div.style.left = target + "px"
+                }
+                else{
+                    div.style.left= div.offsetLeft + speed +"px"
+                }
+            },30)
+        }
+
+        window.onscroll=function(){
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            var clientHeight = 	document.documentElement.clientHeight || document.body.clientHeight
+            var divHeight = div.offsetHeight
+            div.style.top = scrollTop + (clientHeight-divHeight)/2 +"px"
+
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -35,7 +35,9 @@
         var ispeed = 0
         var box = document.getElementById("box")
         setInterval(function(){
+            //弹力，弹力公式F=kx，这里相当于F=kx=ma=a，ispeed=speed=ma=a，所以ispeed=F，k取0.2
             ispeed += (300-box.offsetLeft)/5
+            //摩擦力
             ispeed *=0.8
 
             box.style.left = box.offsetLeft+ispeed +"px"
