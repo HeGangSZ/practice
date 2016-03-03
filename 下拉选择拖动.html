@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-    <title>ÎŞ±êÌâÎÄµµ</title>
+    <meta charset="UTF-8">
+    <title>æ— æ ‡é¢˜æ–‡æ¡£</title>
     <style>
         *{
             margin: 0;
@@ -76,13 +76,13 @@
     </style>
 </head>
 <body>
-<p>Ô­ÉúJS±àĞ´£¬ÍÏ×§ÏÂÀ­²Ëµ¥µÈĞ§¹û</p>
+<p>åŸç”ŸJSç¼–å†™ï¼Œæ‹–æ‹½ä¸‹æ‹‰èœå•ç­‰æ•ˆæœ</p>
 <div id="wrapper">
-    <div id="close">¹Ø±Õ</div>
-    <div id="drag">µã»÷ÎÒÍÏ¶¯·½¿ò</div>
+    <div id="close">å…³é—­</div>
+    <div id="drag">ç‚¹å‡»æˆ‘æ‹–åŠ¨æ–¹æ¡†</div>
 
     <div id="select">
-        <div id="view">Ñ¡Ôñ¿ò</div>
+        <div id="view">é€‰æ‹©æ¡†</div>
         <ul id="option">
             <li id="first">ONE</li>
             <li id="second">TWO</li>
@@ -97,28 +97,28 @@
 <script src="js/util.js"></script>
 <script>
 
-    drag("drag","wrapper");  //µã»÷dragID±êÇ©£¬ÍÏ¶¯wrapperID±êÇ©
+    drag("drag","wrapper");  //ç‚¹å‡»dragIDæ ‡ç­¾ï¼Œæ‹–åŠ¨wrapperIDæ ‡ç­¾
 
     var option = $("#option"),
             view=$("#view"),
             wrapper=$("#wrapper");
 
-    $.on("#close","click",function(){wrapper.style.display="none"});  //µã»÷¹Ø±Õ°´Å¥Ê¹ÈİÆ÷Òş²Ø
+    $.on("#close","click",function(){wrapper.style.display="none"});  //ç‚¹å‡»å…³é—­æŒ‰é’®ä½¿å®¹å™¨éšè—
 
     $.on("#view","click",function(e){
         e=e || window.event;
-        option.style.display="block";  //µã»÷viewÊ¹optionÏÔÊ¾
-        e.stopPropagation();  //×èÖ¹ÊÂ¼şÃ°Åİ£¬·ÀÖ¹µã»÷ºó´¥·¢documentÊ¹optionÒş²Ø
+        option.style.display="block";  //ç‚¹å‡»viewä½¿optionæ˜¾ç¤º
+        e.stopPropagation();  //é˜»æ­¢äº‹ä»¶å†’æ³¡ï¼Œé˜²æ­¢ç‚¹å‡»åè§¦å‘documentä½¿optionéšè—
     });
 
-    //ÔÚÎÄµµÆäËûµØ·½µã»÷Òş²Øoption
+    //åœ¨æ–‡æ¡£å…¶ä»–åœ°æ–¹ç‚¹å‡»éšè—option
     document.onclick =function(){option.style.display="none";};
 
-    //ÊÂ¼ş´úÀí£¬Êó±êÒÆÈëÒÆ³ö¸Ä±äÑÕÉ«
+    //äº‹ä»¶ä»£ç†ï¼Œé¼ æ ‡ç§»å…¥ç§»å‡ºæ”¹å˜é¢œè‰²
     $.delegate("#option","li","mouseover",function(){(this.style.backgroundColor="yellow")});
     $.delegate("#option","li","mouseout",function(){(this.style.backgroundColor="antiquewhite")});
 
-    //ÊÂ¼ş´úÀí£¬µã»÷optionµÄliºóoptionÒş²Ø£¬Í¬Ê±½«ÄÚÈİÌí¼Óµ½viewÀï
+    //äº‹ä»¶ä»£ç†ï¼Œç‚¹å‡»optionçš„liåoptionéšè—ï¼ŒåŒæ—¶å°†å†…å®¹æ·»åŠ åˆ°viewé‡Œ
     $.delegate("#option","li","click",function(){
         view.innerHTML = this.innerHTML;
         view.style.backgroundColor="honeydew";

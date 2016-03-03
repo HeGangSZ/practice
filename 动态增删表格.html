@@ -2,7 +2,7 @@
 <html>
 <head>
     <title> new document </title>
-    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <meta charset="UTF-8">
 
 </head>
 <style>
@@ -14,12 +14,12 @@
 </style>
 
 <body>
-<p class="title">Ô­ÉúJS±àĞ´£¬¼òµ¥µÄDOM²Ù×÷ÔËÓÃ</p>
+<p class="title">åŸç”ŸJSç¼–å†™ï¼Œç®€å•çš„DOMæ“ä½œè¿ç”¨</p>
 <table border="1" width="50%" id="table">
     <tr>
-        <th>Ñ§ºÅ</th>
-        <th>ĞÕÃû</th>
-        <th>²Ù×÷</th>
+        <th>å­¦å·</th>
+        <th>å§“å</th>
+        <th>æ“ä½œ</th>
     </tr>
 
     <tr>
@@ -27,7 +27,7 @@
     </tr>
 
 </table>
-<input type="button" value="Ìí¼ÓÒ»ĞĞ"  />
+<input type="button" value="æ·»åŠ ä¸€è¡Œ"  />
 <script type="text/javascript">
 
     window.onload = function() {
@@ -57,7 +57,7 @@
             var table = document.getElementById("table");
             button.onclick = function () {
                 var add = document.createElement("tr");
-                add.innerHTML = "<td>ĞÂµÄÒ»ĞĞ</td><td>ĞÂµÄÒ»ĞĞ</td><button class='del'>É¾³ı°´Å¥</button>";
+                add.innerHTML = "<td>æ–°çš„ä¸€è¡Œ</td><td>æ–°çš„ä¸€è¡Œ</td><button class='del'>åˆ é™¤æŒ‰é’®</button>";
                 table.appendChild(add);
                 highLight();
                 del()
