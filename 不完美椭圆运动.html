@@ -19,10 +19,15 @@
             left: 600px;
             top: 300px;
         }
-
+        p{
+            margin-top: 100px;
+            text-align: center;
+            font-size: 50px;
+        }
     </style>
 </head>
 <body>
+<p>原生JS编写，DOM操作节点进行椭圆运动，有BUG待修复</p>
 <div id="box"></div>
 <div id="line"></div>
 <script>
@@ -32,8 +37,7 @@
         var v = 30
         var box = document.getElementById("box")
         var angle = 0
-        var color1 = 0
-        var color2 = 255
+
         setInterval(function(){
             //角速度，也可转换为线速度
             angle += 0.1
@@ -48,11 +52,6 @@
             var ispeedY = 0.5*v*Math.cos(angle)
             box.style.left = box.offsetLeft+ispeedX +"px"
             box.style.top = box.offsetTop+ispeedY+"px"
-
-            //背景变变颜色
-            color1 += 1
-            color2 -= 1
-            document.body.style.backgroundColor = "rgb(0,"+color1+","+color2+")"
 
         },20)
 

@@ -24,9 +24,15 @@
             height: 150px;
             background-color: black;
         }
+        .title{
+            margin-top: 100px;
+            text-align: center;
+            font-size: 50px;
+        }
     </style>
 </head>
 <body>
+<p class="title">原生JS编写，弹性运动效果的方块</p>
     <div id="box"></div>
     <div id="line"></div>
 <script>
@@ -39,9 +45,7 @@
             ispeed += (300-box.offsetLeft)/5
             //摩擦力
             ispeed *=0.8
-
             box.style.left = box.offsetLeft+ispeed +"px"
-
         },30)
 
 

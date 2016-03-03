@@ -3,45 +3,18 @@
 <head>
     <title> new document </title>
     <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
-    <script type="text/javascript">
 
-        window.onload = function() {
-            addTr();
-
-            function highLight() {
-                var tr = document.getElementsByTagName("tr");
-                for (var i = 0, j = tr.length; i < j; i++) {
-                    tr[i].onmousemove = function () {
-                        this.style.backgroundColor = "#f2f2f2"
-                    };
-                    tr[i].onmouseout = function () {
-                        this.style.backgroundColor = "#fff"
-                    }
-                }
-            }
-
-            function del() {
-                var del = document.getElementsByClassName("del");
-                del[del.length-1].onclick = function () {
-                    this.parentNode.parentNode.removeChild(this.parentNode)
-                }
-            }
-
-            function addTr() {
-                var button = document.getElementsByTagName("input")[0];
-                var table = document.getElementById("table");
-                button.onclick = function () {
-                    var add = document.createElement("tr");
-                    add.innerHTML = "<td>新的一行</td><td>新的一行</td><button class='del'>删除按钮</button>";
-                    table.appendChild(add);
-                    highLight();
-                    del()
-                };
-            }
-        };
-    </script>
 </head>
+<style>
+    .title{
+        margin-top: 100px;
+        text-align: center;
+        font-size: 50px;
+    }
+</style>
+
 <body>
+<p class="title">原生JS编写，简单的DOM操作运用</p>
 <table border="1" width="50%" id="table">
     <tr>
         <th>学号</th>
@@ -55,5 +28,42 @@
 
 </table>
 <input type="button" value="添加一行"  />
+<script type="text/javascript">
+
+    window.onload = function() {
+        addTr();
+
+        function highLight() {
+            var tr = document.getElementsByTagName("tr");
+            for (var i = 0, j = tr.length; i < j; i++) {
+                tr[i].onmousemove = function () {
+                    this.style.backgroundColor = "#f2f2f2"
+                };
+                tr[i].onmouseout = function () {
+                    this.style.backgroundColor = "#fff"
+                }
+            }
+        }
+
+        function del() {
+            var del = document.getElementsByClassName("del");
+            del[del.length-1].onclick = function () {
+                this.parentNode.parentNode.removeChild(this.parentNode)
+            }
+        }
+
+        function addTr() {
+            var button = document.getElementsByTagName("input")[0];
+            var table = document.getElementById("table");
+            button.onclick = function () {
+                var add = document.createElement("tr");
+                add.innerHTML = "<td>新的一行</td><td>新的一行</td><button class='del'>删除按钮</button>";
+                table.appendChild(add);
+                highLight();
+                del()
+            };
+        }
+    };
+</script>
 </body>
 </html>

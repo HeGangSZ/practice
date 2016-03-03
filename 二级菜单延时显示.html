@@ -52,10 +52,15 @@
             background-color: beige;
 
         }
-
+        .title{
+            margin-top: 100px;
+            text-align: center;
+            font-size: 50px;
+        }
     </style>
 </head>
 <body>
+<p class="title">原生JS编写，二级菜单延时消失效果</p>
     <div id="list">
         <input type="button" id="button" value="菜单">
         <ul id="outUl">
@@ -95,6 +100,7 @@
     </div>
 
 <script>
+
     window.onload=function(){
         function dom(id){
             return document.getElementById(id)

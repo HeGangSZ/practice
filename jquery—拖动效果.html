@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        height: 200px;
+        width: 200px;
+        border: 1px solid gainsboro;
+        background-color: #eeeeee;
+        position: absolute;
+        cursor: move;
+        text-align: center;
+        line-height: 200px;
+        font-size: 30px;
+    }
+    p{
+        margin-top: 200px;
+        text-align: center;
+        font-size: 50px;
+    }
+</style>
+<body>
+    <p>jQuery编写拖拽效果，可以在窗口内拖拽方块</p>
+    <div>拖拽</div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script>
+    $('div').mousedown(function(ev){
+        var disX = 0;
+        var disY = 0;
+
+        disX = ev.pageX - $(this).offset().left;
+        disY = ev.pageY - $(this).offset().top;
+
+
+        $(document).mousemove(function(ev){
+            var x = ev.pageX - disX;
+            var y = ev.pageY - disY;
+            var windowW = $(window).width()- $('div').outerWidth();
+            var windowH = $(window).height()- $('div').outerHeight();
+            console.log(windowW)
+            x = x<0 ? 0:x;
+            y = y<0 ? 0:y;
+            x = x>windowW? windowW :x;
+            y = y>windowH? windowH :y;
+            $('div').css('left',x);
+            $('div').css('top',y);
+        });
+
+        $(document).mouseup(function(){
+            $(document).off();
+        })
+    })
+</script>
+</html>

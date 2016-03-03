@@ -5,12 +5,13 @@
     <title>Title</title>
     <style>
         .one{
-            width: 50px;
-            height: 50px;
+            width: 200px;
+            height: 200px;
             background-color: #0000bf;
             position: absolute;
-            left: 30%;
-            bottom: 100px;
+            left: 50%;
+            margin-left: -100px;
+            bottom: 50%;
             -webkit-animation-iteration-count: infinite;
             animation-iteration-count: infinite;
         }
@@ -55,9 +56,14 @@
                 transform: translateY(0%);
             }
         }
+        p{
+            text-align: center;
+            font-size: 50px;
+        }
     </style>
 </head>
 <body>
+<p>CSS3浮动动画，加上透明度变化可以做向下箭头等指示</p>
 <div class="one floating">
 </body>
 </html>
