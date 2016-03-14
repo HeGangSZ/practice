@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width,
+               height=device-height,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no"/>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    var body = document.getElementsByTagName("body")[0]
+    body.ontouchstart = function(){
+        console.log(1)
+
+        body.ontouchmove = function(){
+            console.log(2)
+        }
+
+        body.ontouchend = function(){
+            console.log(3)
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水平垂直居中的几种方法</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .wrap{
+            height: 30%;
+            width: 100%;
+            margin-bottom: 10px;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        .main {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            overflow: hidden;
+            background-color: #ccc;
+            text-align: center;
+            font-size: 30px;
+        }
+        .circle{
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background:#fc0;
+        }
+        .first-circle{
+            left: -50px;
+            top: -50px;
+        }
+        .second-circle{
+            right: -50px;
+            bottom: -50px;
+        }
+        /*第一种居中，利用负margin，需要知道尺寸（定宽）,兼容性最好，*/
+        .first{
+            left: 50%;
+            top: 50%;
+            margin-left: -200px;
+            margin-top: -100px;
+        }
+        /*第二种居中，利用transform（css3），不定宽,IE9+*/
+        .second{
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        /*第三种居中,flex布局（支持IE10+）*/
+        .three{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .four{
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="one wrap">
+    <div class="first main">
+        第一种居中
+        <div class="first-circle circle"></div>
+        <div class="second-circle circle"></div>
+    </div>
+</div>
+
+<div class="two wrap">
+    <div class="second main">
+        第二种居中
+        <div class="first-circle circle"></div>
+        <div class="second-circle circle"></div>
+    </div>
+</div>
+
+<div class="three wrap">
+        <div class="third main">
+            第三种居中
+            <div class="first-circle circle"></div>
+            <div class="second-circle circle"></div>
+        </div>
+</div>
+
+
+</body>
+</html>

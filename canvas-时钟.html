@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: #cedce8;
+        }
+        canvas{
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="clock"></canvas>
+
+<script src="js/digit.js"></script>
+<script>
+
+    window.onload = function(){
+        var clockCanvas = document.getElementById('clock');
+        var context = clockCanvas.getContext('2d');
+        clockCanvas.height = 800;
+        clockCanvas.width = 1200;
+
+//        var ball = [{x:20,y:20}]
+
+        var x = 5;
+        var y = 10;
+
+        function ball(x,y){
+            context.beginPath();
+            context.arc(x,y,10,0,2*Math.PI,true);
+            context.fill();
+            context.closePath();
+        }
+
+        setInterval(function(){
+            context.clearRect(0,0,1200,800)
+            x += 15;
+            y += 0.8*(y+2)
+            ball(x,y)
+        },30)
+
+
+
+
+    }
+
+//    window.onload = function(){
+
+//        function clock(element) {
+//            var clockCanvas = document.getElementById(element);
+//            var context = clockCanvas.getContext('2d');
+//            clockCanvas.height = 800;
+//            clockCanvas.width = 1200;
+//
+//            var circleRad =8;
+//            var circleSpace =1;
+//            var retangleSize = 2*(circleRad+circleSpace);
+//
+//
+//            var clockLeft = 40;
+//            var clockTop = 40;
+//
+//
+//            var currentTime = getCurrentTime();
+//            setInterval(function () {
+//                context.clearRect(0,0,1200,800)
+//                drawClock(context);
+//                update();
+//            }, 50);
+//
+//            function update(){
+//                var current = new Date();
+//                if(current.getHours() != currentTime.getHours()){
+//                    console.log(1)
+//                }
+//                if(current.getMinutes() != currentTime.getMinutes()){
+//                    console.log(2)
+//                }
+//                if(current.getSeconds() != currentTime.getSeconds()){
+//                    console.log(3)
+//                }
+//                var time = current.getHours()*3600+current.getMinutes()*60+current.getSeconds();
+//                currentTime = time;
+//            }
+//
+//            function getCurrentTime(){
+//                var current = new Date();
+//                var time = current.getHours()*3600+current.getMinutes()*60+current.getSeconds();
+//                return time
+//            }
+//
+//            function drawClock(context) {
+//                var hours = parseInt(currentTime/3600);
+//                var minutes = parseInt((currentTime-hours*3600)/60);
+//                var seconds = currentTime%60;
+//                drawNum(clockLeft,clockTop,parseInt(hours/10),context);
+//                drawNum(clockLeft+retangleSize*8,clockTop,hours%10,context);
+//                drawNum(clockLeft+retangleSize*16,clockTop,10,context);
+//                drawNum(clockLeft+retangleSize*20,clockTop,parseInt(minutes/10),context);
+//                drawNum(clockLeft+retangleSize*28,clockTop,minutes%10,context);
+//                drawNum(clockLeft+retangleSize*36,clockTop,10,context);
+//                drawNum(clockLeft+retangleSize*40,clockTop,parseInt(seconds/10),context);
+//                drawNum(clockLeft+retangleSize*48,clockTop,seconds%10,context);
+//            }
+//
+//            function drawNum(x, y, num, context) {
+//                for (var i = 0; i < digit[num].length; i++) {
+//                    for (var j = 0; j < digit[num][i].length; j++) {
+//                        if (digit[num][i][j] == 1) {
+//                            context.beginPath();
+//                            context.arc(x + retangleSize * j, y + retangleSize * i, circleRad, 0, 2 * Math.PI, true);
+//                            context.fill();
+//                            context.closePath();
+//                        }
+//                    }
+//                }
+//            }
+//
+//        }
+//
+//        clock("clock")
+//
+//    };
+
+
+
+</script>
+</body>
+</html>
