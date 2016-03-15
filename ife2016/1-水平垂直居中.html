@@ -28,6 +28,7 @@
             background-color: #ccc;
             text-align: center;
             font-size: 30px;
+            line-height: 200px;
         }
         .circle{
             position: absolute;
@@ -63,10 +64,18 @@
             align-items: center;
             justify-content: center;
         }
+        /*第四种居中,table布局，需要增加一层嵌套，IE8+*/
         .four{
+            display: table;
+        }
+        .forth-parent{
             display: table-cell;
             vertical-align: middle;
         }
+        .forth{
+            margin:0 auto;
+        }
+
     </style>
 </head>
 <body>
@@ -93,6 +102,16 @@
             <div class="first-circle circle"></div>
             <div class="second-circle circle"></div>
         </div>
+</div>
+
+<div class="four wrap">
+    <div class="forth-parent">
+        <div class="forth main">
+            第四种居中
+            <div class="first-circle circle"></div>
+            <div class="second-circle circle"></div>
+        </div>
+    </div>
 </div>
 
 

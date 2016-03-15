@@ -276,7 +276,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="liveEdit" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/000" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CV" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
